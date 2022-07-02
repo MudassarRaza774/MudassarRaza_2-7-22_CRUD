@@ -7,84 +7,78 @@ window.addEventListener("load", () => {
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-
         const name1 = name.value;
         const salary1 = salary.value;
         const phone1 = phone.value;
-
-        // const task_el = document.createElement("div");
-        // task_el.classList.add("task");
-
-        const subDiv = document.createElement("div");
-        subDiv.classList.add("content");
-
+        if (name1 == "" || salary1 == "" || phone1 == "") {
+            window.alert("Fill the fields first")
+        } else {
+            const subDiv = document.createElement("div");
+            subDiv.classList.add("content");
 
 
-        const names = document.createElement("input");
-        names.classList.add("text");
-        names.type = "text";
-        names.value = name1;
-        names.setAttribute("readonly", "readonly");
-        const salaries = document.createElement("input");
-        salaries.classList.add("text");
-        salaries.type = "text";
-        salaries.value = salary1;
-        salaries.setAttribute("readonly", "readonly");
-        const phones = document.createElement("input");
-        phones.classList.add("text");
-        phones.type = "text";
-        phones.value = phone1;
-        phones.setAttribute("readonly", "readonly");
+            const names = document.createElement("input");
+            names.classList.add("text");
+            names.type = "text";
+            names.value = name1;
+            names.setAttribute("readonly", "readonly");
+            const salaries = document.createElement("input");
+            salaries.classList.add("text");
+            salaries.type = "text";
+            salaries.value = salary1;
+            salaries.setAttribute("readonly", "readonly");
+            const phones = document.createElement("input");
+            phones.classList.add("text");
+            phones.type = "text";
+            phones.value = phone1;
+            phones.setAttribute("readonly", "readonly");
 
-        const editButton = document.createElement("button");
-        editButton.classList.add("edit");
-        editButton.innerText = "Edit";
+            const editButton = document.createElement("button");
+            editButton.classList.add("edit");
+            editButton.innerText = "Edit";
 
-        subDiv.appendChild(names);
-        subDiv.appendChild(salaries);
-        subDiv.appendChild(phones);
-        subDiv.appendChild(editButton)
+            const deleteButton = document.createElement("button");
+            deleteButton.classList.add("delete");
+            deleteButton.innerText = "Delete";
 
 
-        mainDiv.appendChild(subDiv);
+            subDiv.appendChild(names);
+            subDiv.appendChild(salaries);
+            subDiv.appendChild(phones);
+            subDiv.appendChild(editButton)
+            subDiv.appendChild(deleteButton)
 
-        name.value = ""
-        salary.value = ""
-        phone.value = ""
 
-        // const task_actions_el = document.createElement('div');
-        // task_actions_el.classList.add('actions');
+            mainDiv.appendChild(subDiv);
 
-        // const task_edit_el = document.createElement('button');
-        // task_edit_el.classList.add('edit');
-        // task_edit_el.innerText = 'Edit';
+            name.value = ""
+            salary.value = ""
+            phone.value = ""
 
-        // const task_delete_el = document.createElement('button');
-        // task_delete_el.classList.add('delete');
-        // task_delete_el.innerText = 'Delete';
+            editButton.addEventListener("click", () => {
+                if (editButton.innerText == "Edit") {
+                    editButton.innerText = "Save";
+                    names.removeAttribute("readonly");
+                    names.focus();
+                    salaries.removeAttribute("readonly");
+                    phones.removeAttribute("readonly");
 
-        // task_actions_el.appendChild(task_edit_el);
-        // task_actions_el.appendChild(task_delete_el);
+                } else {
+                    editButton.innerText = "Edit";
+                    names.setAttribute("readonly", "readonly");
+                    phones.setAttribute("readonly", "readonly");
+                    salaries.setAttribute("readonly", "readonly");
+                }
+            })
+            deleteButton.addEventListener("click", () => {
+                subDiv.removeChild(names)
+                subDiv.removeChild(salaries)
+                subDiv.removeChild(phones)
+                subDiv.removeChild(editButton)
+                subDiv.removeChild(deleteButton)
 
-        // task_el.appendChild(task_actions_el);
-
-        // list_el.appendChild(task_el);
-
-        // input.value = '';
-
-        // task_edit_el.addEventListener('click', (e) => {
-        //     if (task_edit_el.innerText.toLowerCase() == "edit") {
-        //         task_edit_el.innerText = "Save";
-        //         task_input_el.removeAttribute("readonly");
-        //         task_input_el.focus();
-        //     } else {
-        //         task_edit_el.innerText = "Edit";
-        //         task_input_el.setAttribute("readonly", "readonly");
-        //     }
-        // });
-
-        // task_delete_el.addEventListener('click', (e) => {
-        //     list_el.removeChild(task_el);
-        // });
+            })
+        }
     });
 });
+
